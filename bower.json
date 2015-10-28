@@ -24,7 +24,8 @@
     "bower_components",
     "demo",
     "src",
-    "package.json"
+    "package.json",
+    "gulpfile.js"
   ],
   "dependencies": {
     "angular": ">=1.2.0",
