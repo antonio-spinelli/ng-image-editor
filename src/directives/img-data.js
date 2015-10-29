@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgData', [])
 
 /*Convert a file in the scope into an img src data attribute*/
 .directive('imgData', [function(){

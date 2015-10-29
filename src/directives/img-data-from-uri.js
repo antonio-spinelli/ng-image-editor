@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgDataFromUri', [])
 
 /* read a file from a url and convert it to a data src
 (this will only work for CORS images, in non-cors supporting browsers

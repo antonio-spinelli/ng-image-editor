@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgThumb', [])
 
 .directive('imgThumb', [function(){
 	return {

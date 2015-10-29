@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgEditable', [])
 
 /* add listeners for 'crop', 'rotate' and 'rest' brodcasts */
 .directive('imgEditable', ['$parse', function($parse){

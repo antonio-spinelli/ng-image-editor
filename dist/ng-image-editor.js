@@ -6,7 +6,16 @@
  * @link https://github.com/antonio-spinelli/ng-image-editor
  * @license MIT
  */
-(function (angular, $) {
+(function (angular, $){
+
+'use strict';
+
+angular.module('ngImageEditor.directives', [
+	'ngImageEditor.directives.imgDataFromUri',
+	'ngImageEditor.directives.imgData',
+	'ngImageEditor.directives.imgEditable',
+	'ngImageEditor.directives.imgThumb'
+]);
 
 'use strict';
 
@@ -34,7 +43,7 @@ function getRotatedRectBB(x, y, width, height, rAngle){
 
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgDataFromUri', [])
 
 /* read a file from a url and convert it to a data src
 (this will only work for CORS images, in non-cors supporting browsers
@@ -151,7 +160,7 @@ serve images from the same domain as the user is on. */
 
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgData', [])
 
 /*Convert a file in the scope into an img src data attribute*/
 .directive('imgData', [function(){
@@ -182,7 +191,7 @@ angular.module('ngImageEditor.directives', [])
 
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgEditable', [])
 
 /* add listeners for 'crop', 'rotate' and 'rest' brodcasts */
 .directive('imgEditable', ['$parse', function($parse){
@@ -486,7 +495,7 @@ angular.module('ngImageEditor.directives', [])
 
 'use strict';
 
-angular.module('ngImageEditor.directives', [])
+angular.module('ngImageEditor.directives.imgThumb', [])
 
 .directive('imgThumb', [function(){
 	return {

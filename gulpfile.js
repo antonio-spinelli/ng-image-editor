@@ -11,16 +11,14 @@ var path = {
 	}
 };
 
-var pkgName = 'ng-image-editor';
-
-gulp.task('jshint', function(done) {
+gulp.task('jshint', function(done){
 	gulp.src(path.src.files)
 	.pipe(plugins.jshint('.jshintrc'))
 	.pipe(plugins.jshint.reporter(jshintReporter));
 	done();
 });
 
-gulp.task('build', function() {
+gulp.task('build', function(){
 	var pkg = require('./bower.json');
 
 	var header = ['/**',
@@ -43,15 +41,15 @@ gulp.task('build', function() {
 	gulp.src([
 		'src/**/*.js'
 	])
-	.pipe(plugins.concat(pkgName + '.js'))
+	.pipe(plugins.concat(pkg.name + '.js'))
 	.pipe(plugins.header(header, {pkg: pkg}))
 	.pipe(plugins.footer(footer))
 	.pipe(gulp.dest('./dist/'))
 	.pipe(plugins.uglify())
-	.pipe(plugins.concat(pkgName + '.min.js'))
+	.pipe(plugins.concat(pkg.name + '.min.js'))
 	.pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('default', ['jshint', 'build'], function() {
+gulp.task('default', ['jshint', 'build'], function(){
 	gulp.watch(path.src.files, ['jshint', 'build']);
 });
