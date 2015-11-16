@@ -1,7 +1,7 @@
 /**
  * ng-image-editor
  * Angular lib which use Canvas to provide an editable context for images with Jcrop(http://deepliquid.com/content/Jcrop.html).
- * @version v0.0.1
+ * @version v0.0.2
  * @author Antonio Spinelli <antonio.86.spinelli@gmail.com>
  * @link https://github.com/antonio-spinelli/ng-image-editor
  * @license MIT
@@ -317,11 +317,11 @@ angular.module('ngImageEditor.directives.imgEditable', [])
 			});
 
 			//rotate
-			scope.$on('rotate', function(){
-				scope.rotation = (scope.rotation + 90) % 360;
+			scope.$on('rotate', function(e, left){
+				scope.rotation = (scope.rotation + (left ? 270 : 90)) % 360;
 				//update the model
 				scope.model.rotation.assign(scope, scope.rotation);
-				doRotate();
+				doRotate(left);
 			});
 
 			//Functions
@@ -333,7 +333,7 @@ angular.module('ngImageEditor.directives.imgEditable', [])
 				fullSize.src = orig.src; //reset the saved crop image as well
 			}
 
-			function doRotate(){
+			function doRotate(left){
 				var img = new Image();
 				img.onload = function(){
 					var myImage;
@@ -359,8 +359,15 @@ angular.module('ngImageEditor.directives.imgEditable', [])
 							ch = canvas.height;
 							ctx.save();
 							// translate and rotate
-							ctx.translate(parseInt(cw), parseInt(ch / cw));
-							ctx.rotate(Math.PI / 2);
+							if (left) {
+								ctx.translate(0, parseInt(ch));
+								ctx.rotate(Math.PI * 1.5);
+							} else {
+								ctx.translate(parseInt(cw), 0);
+								ctx.rotate(Math.PI / 2);
+							}
+							/*ctx.translate(parseInt(cw), parseInt(ch / cw));
+							ctx.rotate(Math.PI / 2);*/
 							// draw the previows image, now rotated
 							ctx.drawImage(myImage, 0, 0);
 							ctx.restore();
@@ -374,10 +381,10 @@ angular.module('ngImageEditor.directives.imgEditable', [])
 					}
 				};
 				img.src = element.attr('src');
-				rotateFullSize();
+				rotateFullSize(left);
 			}
 
-			function rotateFullSize(){
+			function rotateFullSize(left){
 				//silently rotate the full size image in the background
 				var img2 = new Image();
 				img2.onload = function(){
@@ -403,8 +410,15 @@ angular.module('ngImageEditor.directives.imgEditable', [])
 							ch2 = canvas2.height;
 							ctx2.save();
 							// translate and rotate
-							ctx2.translate(parseInt(cw2), parseInt(ch2 / cw2));
-							ctx2.rotate(Math.PI / 2);
+							if (left) {
+								ctx2.translate(0, parseInt(ch2));
+								ctx2.rotate(Math.PI * 1.5);
+							} else {
+								ctx2.translate(parseInt(cw2), 0);
+								ctx2.rotate(Math.PI / 2);
+							}
+							/*ctx2.translate(parseInt(cw2), parseInt(ch2 / cw2));
+							ctx2.rotate(Math.PI / 2);*/
 							// draw the previows image, now rotated
 							ctx2.drawImage(myImage2, 0, 0);
 							ctx2.restore();

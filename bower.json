@@ -1,6 +1,6 @@
 {
   "name": "ng-image-editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular lib which use Canvas to provide an editable context for images with Jcrop(http://deepliquid.com/content/Jcrop.html).",
   "homepage": "https://github.com/antonio-spinelli/ng-image-editor",
   "authors": [
